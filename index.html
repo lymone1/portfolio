@@ -29,14 +29,15 @@
   <header class="nav">
     <a href="#top" class="nav-logo">VS<em>©</em></a>
     <nav class="mono">
-      <a href="#servizi"><sup>01</sup>Servizi</a>
-      <a href="#lavori"><sup>02</sup>Lavori</a>
-      <a href="#chi-sono"><sup>03</sup>Chi sono</a>
-      <a href="#contatti"><sup>04</sup>Contatti</a>
+      <a href="#casi"><sup>01</sup>Casi studio</a>
+      <a href="#servizi"><sup>02</sup>Servizi</a>
+      <a href="#lavori"><sup>03</sup>Lavori</a>
+      <a href="#chi-sono"><sup>04</sup>Chi sono</a>
+      <a href="#contatti"><sup>05</sup>Contatti</a>
     </nav>
   </header>
   <!-- fuori dal menu: il menu usa mix-blend-mode e cambierebbe il colore del pulsante -->
-  <a href="#contatti" class="mono nav-cta">Contattami ora</a>
+  <a href="#contatti" class="mono nav-cta">Lavoriamo insieme</a>
 
   <!-- ===== MIRINO: angoli, REC, scena e timecode che scorre con lo scroll ===== -->
   <div class="hud mono" aria-hidden="true">
@@ -45,7 +46,6 @@
     <i class="cine top"></i><i class="cine bot"></i>
     <i class="vf tl"></i><i class="vf tr"></i><i class="vf bl"></i><i class="vf br"></i>
     <span class="hud-left"><span class="clap"><i class="clap-top"></i><i class="clap-base"></i></span><span class="rec"><b></b><span class="rec-label">REC</span></span><span class="hud-scene">Scena 01 — Apertura</span></span>
-    <span class="hud-specs"><span class="x">α7 IV</span> <s class="x">·</s> <span>XAVC S-I 4K</span> <s>·</s> <span>25P</span> <s>·</s> <span class="x">S-LOG3</span> <s class="x">·</s> <span data-k="iso">ISO 800</span> <s>·</s> <span data-k="sh">1/50</span> <s>·</s> <span data-k="f">F2.8</span> <s>·</s> <span data-k="wb">5600K</span> <s>·</s> <span data-k="mm">35MM</span> <s>·</s> <span><span class="batt"><i></i></span> 87%</span></span>
     <span class="hud-right"><span class="meters"><i><b></b></i><i><b></b></i></span><span class="hud-tc">00:00:00:00</span></span>
   </div>
 
@@ -54,124 +54,93 @@
 
   <main>
 
-    <!-- ===== INTRO: MacBook che si apre, poi zoom dentro lo schermo ===== -->
-    <section class="intro" id="top" data-bg="ink" data-scene="Scena 01 — Apertura" data-cam="ISO 800|1/50|F2.8|5600K|35MM">
-      <div class="intro-pin">
-        <!-- la tua Sony a7 IV: metti la foto in assets/a7iv.png (meglio scontornata). Se il file non c'è, questo blocco sparisce da solo -->
-        <div class="float-cam" aria-hidden="true"><div class="cam-in">
-          <!-- disegno a linee della a7 IV (ricavato da una foto CC0, vedi assets/CREDITI.txt). Per ridisegnarla col tuo 24-70 GM II: metti una tua foto in assets/ e chiedi di rigenerare a7iv-line.png -->
-          <img src="a7iv-line.png" alt="" onerror="this.closest('.float-cam').remove()">
-          <i class="cam-af"></i>
-          <span class="co co-lens mono" style="--x:86%;--y:78%"><i></i>FE 24-70 F2.8 GM II</span>
-          <span class="co co-body mono" style="--x:16%;--y:30%"><i></i>33 MP · Full frame</span>
-          <span class="cam-tag mono"><b></b>CAM A — α7 IV · 24-70 GM II</span>
-        </div></div>
-
-        <!-- altra attrezzatura da set, stesso stile a linee (crediti delle foto in fondo alla pagina) -->
-        <div class="gear g-light" aria-hidden="true"><div class="g-in"><img src="gear-light.png" alt=""><span class="cam-tag mono"><b></b>LUCE — COB + OCTABOX · 5600K</span></div></div>
-        <div class="gear g-gimbal" aria-hidden="true"><div class="g-in"><img src="gear-gimbal.png" alt=""><span class="cam-tag mono"><b></b>GIMBAL — DJI RS</span></div></div>
-        <div class="gear g-mic" aria-hidden="true"><div class="g-in"><img src="gear-mic.png" alt=""><span class="cam-tag mono"><b></b>AUDIO — DJI MIC</span></div></div>
-
-        <div class="mac-wrap">
-          <div class="mac">
-            <div class="mac-lid">
-              <div class="mac-face">
-                <i class="mac-cam"></i>
-                <div class="mac-screen">
-                  <!-- programma di montaggio simulato (layout da software professionale; le immagini sono segnaposto) -->
-                  <div class="nle" aria-hidden="true">
-                    <div class="nle-menu"><b>●</b><span>File</span><span>Modifica</span><span>Trim</span><span>Timeline</span><span>Clip</span><span>Segna</span><span>Vista</span><span>Riproduzione</span><span>Workspace</span><em>Portfolio_Victor</em></div>
-                    <div class="nle-tools"><span class="on">Media Pool</span><span>Effetti</span><span>Indice</span><b>Portfolio_Victor — Timeline 1</b><span>Mixer</span><span>Metadati</span><span class="on">Inspector</span></div>
-                    <div class="nle-main">
-                      <div class="nle-pool"><p class="ph">Master <span>6 clip</span></p><div class="pool-grid"><figure><img src="https://picsum.photos/seed/vw1/480/270" alt=""><figcaption>C01_salone.mov<span>00:00:12:00</span></figcaption></figure><figure><img src="https://picsum.photos/seed/vw2/480/270" alt=""><figcaption>C02_moda.mov<span>00:00:08:00</span></figcaption></figure><figure><img src="https://picsum.photos/seed/vw3/480/270" alt=""><figcaption>C03_prodotto.mov<span>00:00:10:00</span></figcaption></figure><figure><img src="https://picsum.photos/seed/vw4/480/270" alt=""><figcaption>C04_evento.mov<span>00:00:15:00</span></figcaption></figure><figure><img src="https://picsum.photos/seed/vw5/480/270" alt=""><figcaption>C05_ai.mov<span>00:00:09:00</span></figcaption></figure><figure><img src="https://picsum.photos/seed/vw6/480/270" alt=""><figcaption>C06_drone.mov<span>00:00:20:00</span></figcaption></figure></div></div>
-                      <div class="nle-view src">
-                        <p class="vh"><span>C03_prodotto.mov</span><span>37%</span><span class="tcw">00:00:04:12</span></p>
-                        <div class="vbox"><img src="https://picsum.photos/seed/vw3/480/270" alt=""></div>
-                        <p class="transport">⏮ ◀ ■ ▶ ⏭</p>
-                      </div>
-                      <div class="nle-view prg">
-                        <p class="vh"><span>Timeline 1</span><span>37%</span><span class="tcw nle-tc">01:00:00:00</span></p>
-                        <div class="vbox">
-                          <div class="vw-frame">
-                            <img class="vw-img" src="https://picsum.photos/seed/vw1/480/270" alt="">
-                            <!-- il titolo finale = anteprima dell'hero -->
-                            <div class="scr">
-                              <span class="mono scr-top">VS© — Direttore creativo</span>
-                              <span class="scr-name">Victor<br>Sirbu</span>
-                              <span class="scr-em">Foto · Video · Design · AI</span>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="transport">⏮ ◀ ■ <b>▶</b> ⏭</p>
-                      </div>
-                      <div class="nle-insp">
-                        <p class="ph">Inspector <span>Video</span></p>
-                        <p class="ig">Trasforma</p>
-                        <p class="ir"><span>Zoom</span><i style="--v:.5"></i><em>1.000</em></p>
-                        <p class="ir"><span>Posizione X</span><i style="--v:.5"></i><em>0.000</em></p>
-                        <p class="ir"><span>Posizione Y</span><i style="--v:.5"></i><em>0.000</em></p>
-                        <p class="ir"><span>Rotazione</span><i style="--v:.5"></i><em>0.000</em></p>
-                        <p class="ig">Ritaglio</p>
-                        <p class="ir"><span>Sinistra</span><i style="--v:0"></i><em>0.000</em></p>
-                        <p class="ir"><span>Destra</span><i style="--v:0"></i><em>0.000</em></p>
-                        <p class="ig">Composito</p>
-                        <p class="ir"><span>Opacità</span><i style="--v:1"></i><em>100.00</em></p>
-                      </div>
-                    </div>
-                    <div class="nle-timeline">
-                      <div class="tl-bar"><span class="tl-tc nle-tc">01:00:00:00</span><span class="tl-icons">▸ ⌶ ✂ ⛓ ⚑</span><span class="tl-name">Timeline 1</span></div>
-                      <div class="tl-body">
-                        <div class="tl-heads">
-                          <p class="th"></p>
-                          <p class="th"><b>V2</b>Video 2</p>
-                          <p class="th"><b>V1</b>Video 1</p>
-                          <p class="th a"><b>A1</b>Audio 1 <em>2.0</em></p>
-                          <p class="th a"><b>A2</b>Audio 2 <em>2.0</em></p>
-                        </div>
-                        <div class="tl-right">
-                          <div class="tl-ruler"><span>01:00:00:00</span><span>01:00:06:00</span><span>01:00:12:00</span><span>01:00:18:00</span><span>01:00:24:00</span></div>
-                          <div class="tl-lane"><i class="clip t" style="left:58%;width:30%"><span>Testo+ — Victor Sirbu</span></i></div>
-                          <div class="tl-lane"><i class="clip v" style="left:0%;width:17.8%;--th:url(https://picsum.photos/seed/vw1/480/270)"><span>C01.mov</span></i><i class="clip v" style="left:18%;width:15.8%;--th:url(https://picsum.photos/seed/vw2/480/270)"><span>C02.mov</span></i><i class="clip v" style="left:34%;width:17.8%;--th:url(https://picsum.photos/seed/vw3/480/270)"><span>C03.mov</span></i><i class="clip v" style="left:52%;width:17.8%;--th:url(https://picsum.photos/seed/vw4/480/270)"><span>C04.mov</span></i><i class="clip v" style="left:70%;width:18%;--th:url(https://picsum.photos/seed/vw5/480/270)"><span>C05.mov</span></i></div>
-                          <div class="tl-lane"><i class="clip a" style="left:0;width:51.8%"><span>VO_01.wav</span></i><i class="clip a" style="left:52%;width:36%"><span>VO_02.wav</span></i></div>
-                          <div class="tl-lane"><i class="clip a m" style="left:0;width:94%"><span>Musica_master.wav</span></i></div>
-                          <i class="tl-head"></i>
-                        </div>
-                        <div class="tl-meters"><i></i><i></i></div>
-                      </div>
-                    </div>
-                    <div class="nle-pages"><span>Media</span><span>Cut</span><span class="on">Edit</span><span>Fusion</span><span>Color</span><span>Fairlight</span><span>Deliver</span></div>
-                  </div>
-                  <i class="mac-glare"></i>
-                </div>
-              </div>
-              <div class="mac-back"></div>
-            </div>
-            <div class="mac-base"><i></i></div>
+    <!-- ===== SCENA 01: SHOWREEL ===== -->
+    <section class="hero" id="top" data-bg="ink" data-scene="Scena 01 — Showreel">
+      <p class="mono idx">Scena 01 — Showreel</p>
+      <h1 class="hero-title" data-split>Victor Sirbu,<br><em>direttore creativo.</em></h1>
+      <div class="reel-frame">
+        <!-- SHOWREEL: quando hai il video, mettilo in assets/showreel.mp4,
+             togli il blocco .reel-ph qui sotto e togli il commento al <video> -->
+        <!-- <video class="reel-video" src="../assets/showreel.mp4" autoplay muted loop playsinline></video> -->
+        <div class="reel-ph" aria-hidden="true">
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="reel-card">
+            <span class="mono"><b class="rec-dot"></b>Showreel 2026</span>
+            <strong>In montaggio</strong>
+            <span class="mono reel-tc">00:00:00:00</span>
           </div>
-          <div class="mac-shadow"></div>
         </div>
+        <i class="rf tl"></i><i class="rf tr"></i><i class="rf bl"></i><i class="rf br"></i>
+      </div>
+      <div class="hero-row">
+        <p class="mono hero-meta">Concept · Regia · Montaggio<br>Fotografia · Contenuti AI<br>Base: Italia / Ovunque</p>
+        <p class="hero-copy">Dirigo progetti visivi per brand, attività e creator: parto dall'obiettivo, scrivo l'idea, la giro e la monto. Una sola persona dall'inizio alla fine.</p>
+        <div class="hero-ctas"><a href="#contatti" class="btn-rec mono"><b></b>Lavoriamo insieme</a><a href="#casi" class="btn-line mono">Guarda i casi studio</a></div>
       </div>
     </section>
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" data-bg="bone" data-scene="Scena 01 — Apertura" data-cam="ISO 800|1/50|F2.8|5600K|35MM">
-      <p class="mono idx">Scena 01 — Apertura</p>
-      <h1 class="hero-title" data-split>Foto, video e <em>contenuti AI</em><br>per il tuo brand.</h1>
-      <div class="hero-row">
-        <p class="mono hero-meta">Direttore creativo<br>Foto — Video editing<br>Video AI — Social media<br>Base: Italia / Ovunque</p>
-        <p class="hero-copy">Lavoro con attività locali, aziende e creator in tutta Italia. Penso l'idea, la giro, la monto.</p>
-        <a href="#contatti" class="btn-rec hero-cta mono"><b></b>Parliamo del tuo progetto</a>
+    <section class="proof" data-bg="ink">
+      <!-- clienti: sostituisci con i nomi (o i loghi) veri, oppure con i loghi -->
+      <div class="clients">
+        <p class="mono idx">Hanno lavorato con me</p>
+        <ul class="mono"><li>Cliente 01</li><li>Cliente 02</li><li>Cliente 03</li><li>Cliente 04</li><li>Cliente 05</li><li>Cliente 06</li></ul>
       </div>
+    </section>
+
+    <!-- ===== SCENA 02: CASI STUDIO =====
+         Ogni caso racconta: problema del cliente → idea → esecuzione → risultato (con un numero vero).
+         I testi qui sotto sono ESEMPI: sostituiscili con i tuoi progetti reali e togli l'etichetta "Esempio". -->
+    <section class="cases" id="casi" data-bg="bone" data-scene="Scena 02 — Casi studio">
+      <div class="sec-head">
+        <p class="mono idx">Scena 02 — Casi studio</p>
+        <h2 class="sec-title" data-split>Casi <em>studio</em></h2>
+      </div>
+
+      <article class="case">
+        <header class="case-head mono"><span>Caso 01</span><span>Nome cliente</span><span>Salone / Beauty</span><span>2026</span><span class="tag">Esempio — da sostituire</span></header>
+        <h3 class="case-title">Una serie di Reel che racconta il salone attraverso le persone, non i tagli.</h3>
+        <div class="case-media"><img src="https://picsum.photos/seed/case1/1600/700" alt="" loading="lazy"></div>
+        <ol class="case-scenes">
+          <li><span class="mono">Scena 1 — Problema</span><p>Il profilo pubblicava solo foto prima/dopo: tutte uguali a quelle dei concorrenti, poche prenotazioni da Instagram.</p></li>
+          <li><span class="mono">Scena 2 — Idea</span><p>Raccontare le persone dietro la poltrona: ogni Reel una storia breve, con un gancio forte nei primi due secondi.</p></li>
+          <li><span class="mono">Scena 3 — Esecuzione</span><p>Script, riprese in una giornata, montaggio verticale con sottotitoli e colore coerente su tutta la serie.</p></li>
+          <li class="res"><span class="mono">Scena 4 — Risultato</span><b>+00%</b><p>prenotazioni arrivate da Instagram in 3 mesi (metti il tuo dato reale).</p></li>
+        </ol>
+      </article>
+
+      <article class="case">
+        <header class="case-head mono"><span>Caso 02</span><span>Nome brand</span><span>Moda / E-commerce</span><span>2026</span><span class="tag">Esempio — da sostituire</span></header>
+        <h3 class="case-title">Uno spot realizzato con l'intelligenza artificiale, senza set e senza modelle.</h3>
+        <div class="case-media"><img src="https://picsum.photos/seed/case2/1600/700" alt="" loading="lazy"></div>
+        <ol class="case-scenes">
+          <li><span class="mono">Scena 1 — Problema</span><p>Lancio di una nuova collezione con budget e tempi troppo stretti per uno shooting tradizionale.</p></li>
+          <li><span class="mono">Scena 2 — Idea</span><p>Ambientazioni impossibili da girare, generate con AI e unite ai capi reali fotografati in studio.</p></li>
+          <li><span class="mono">Scena 3 — Esecuzione</span><p>Foto prodotto, generazione delle scene, compositing e montaggio di uno spot da 20 secondi più i tagli social.</p></li>
+          <li class="res"><span class="mono">Scena 4 — Risultato</span><b>0,0×</b><p>il ritorno sulla spesa pubblicitaria rispetto alla campagna precedente (metti il tuo dato).</p></li>
+        </ol>
+      </article>
+
+      <article class="case">
+        <header class="case-head mono"><span>Caso 03</span><span>Nome azienda</span><span>Eventi / Corporate</span><span>2025</span><span class="tag">Esempio — da sostituire</span></header>
+        <h3 class="case-title">L'aftermovie che è diventato il video di presentazione dell'azienda.</h3>
+        <div class="case-media"><img src="https://picsum.photos/seed/case3/1600/700" alt="" loading="lazy"></div>
+        <ol class="case-scenes">
+          <li><span class="mono">Scena 1 — Problema</span><p>Serviva un ricordo dell'evento, ma l'azienda non aveva nessun video per presentarsi ai nuovi clienti.</p></li>
+          <li><span class="mono">Scena 2 — Idea</span><p>Girare l'evento pensando già al montaggio finale: interviste brevi, dettagli, persone, ritmo.</p></li>
+          <li><span class="mono">Scena 3 — Esecuzione</span><p>Due camere, audio dedicato, montaggio in due versioni: aftermovie da 90 secondi e video istituzionale.</p></li>
+          <li class="res"><span class="mono">Scena 4 — Risultato</span><b>00.000</b><p>visualizzazioni e il video usato nelle presentazioni commerciali (metti il tuo dato).</p></li>
+        </ol>
+      </article>
     </section>
 
     <!-- ===== SERVIZI ===== -->
-    <section class="services" id="servizi" data-bg="ink" data-scene="Scena 02 — Servizi" data-cam="ISO 1600|1/50|F1.8|3200K|50MM">
+    <section class="services" id="servizi" data-bg="ink" data-scene="Scena 03 — Servizi">
       <div class="sec-head">
-        <p class="mono idx">Scena 02 — Servizi</p>
+        <p class="mono idx">Scena 03 — Servizi</p>
         <h2 class="sec-title" data-split>I miei <em>servizi</em></h2>
       </div>
 
-      <!-- data-img = immagine che segue il cursore al passaggio (sostituisci con assets/...) -->
+      <!-- data-img = immagine che segue il cursore al passaggio (sostituisci con ../assets/...) -->
       <ul class="svc-list">
         <li class="svc" data-img="https://picsum.photos/seed/svc1/600/750" data-filter="foto">
           <span class="mono svc-i">01</span>
@@ -202,12 +171,12 @@
     </section>
 
     <!-- ===== LAVORI: galleria orizzontale ===== -->
-    <section class="works" id="lavori" data-bg="ink" data-scene="Scena 03 — Lavori" data-cam="ISO 400|1/100|F4|5600K|24MM" data-cine>
+    <section class="works" id="lavori" data-bg="ink" data-scene="Scena 04 — Altri lavori" data-cine>
       <div class="works-pin">
         <i class="playhead" aria-hidden="true"></i>
         <div class="works-head">
-          <p class="mono idx">Scena 03 — Lavori · Timeline</p>
-          <h2 class="sec-title" data-split>Lavori <em>recenti</em></h2>
+          <p class="mono idx">Scena 04 — Altri lavori · Timeline</p>
+          <h2 class="sec-title" data-split>Altri <em>lavori</em></h2>
           <div class="filters mono">
             <button class="filter active" data-filter="all">Tutti</button>
             <button class="filter" data-filter="foto">Foto</button>
@@ -220,8 +189,8 @@
         <!--
           COME AGGIUNGERE UN LAVORO (una <figure> per lavoro):
           - data-cat:  foto | video | ai | social
-          - Foto:      data-type="image" data-src="nome.jpg"
-          - Video:     data-type="video" data-src="nome.mp4"
+          - Foto:      data-type="image" data-src="../assets/nome.jpg"
+          - Video:     data-type="video" data-src="../assets/nome.mp4"
           - YouTube:   data-type="embed" data-src="https://www.youtube.com/embed/ID"
           - Copertina: l'<img> dentro .w-media
           - Forma:     classe "tall", "wide" o nessuna
@@ -265,13 +234,19 @@
     </section>
 
     <!-- ===== CHI SONO ===== -->
-    <section class="about" id="chi-sono" data-bg="bone" data-scene="Scena 04 — Chi sono" data-cam="ISO 640|1/50|F1.4|4300K|85MM">
-      <p class="mono idx">Scena 04 — Chi sono</p>
+    <section class="about" id="chi-sono" data-bg="bone" data-scene="Scena 05 — Chi sono">
+      <p class="mono idx">Scena 05 — Chi sono</p>
       <div class="about-grid">
-        <!-- sostituisci con <img src="victor.jpg" alt="Victor Sirbu"> -->
+        <!-- sostituisci con <img src="../assets/victor.jpg" alt="Victor Sirbu"> -->
         <div class="about-img"><div class="about-img-in"><img src="https://picsum.photos/seed/vsport/800/1000?grayscale" alt="Ritratto (segnaposto)"></div><span class="mono">Ritratto — segnaposto</span></div>
         <div class="about-text">
-          <h2 class="statement" data-split>Ciao, sono Victor, <em>direttore creativo.</em> Seguo fotografia, video, grafica e contenuti AI per attività, aziende e creator, dall'idea alla consegna.</h2>
+          <h2 class="statement" data-split>Ciao, sono Victor. Prima di accendere la camera <em>decido cosa raccontare e perché.</em></h2>
+          <!-- il tuo modo di lavorare: riscrivilo con parole tue -->
+          <ol class="principles">
+            <li><span class="mono">01</span><b>L'obiettivo prima dell'estetica.</b><p>Ogni progetto parte da cosa deve succedere dopo: prenotazioni, vendite, contatti.</p></li>
+            <li><span class="mono">02</span><b>Un'idea, non un video.</b><p>Scrivo il concept e lo script prima di girare. Il montaggio è già deciso sulla carta.</p></li>
+            <li><span class="mono">03</span><b>Uno sguardo solo.</b><p>Idea, riprese, montaggio e AI li seguo io: lo stile resta coerente dall'inizio alla fine.</p></li>
+          </ol>
           <!-- numeri di esempio: sostituisci con i tuoi -->
           <dl class="nums mono">
             <div><dt data-count="50">0</dt><dd>clienti seguiti</dd></div>
@@ -283,9 +258,10 @@
 
     </section>
 
+
     <!-- ===== CONTATTI ===== -->
-    <section class="contact" id="contatti" data-bg="ink" data-scene="Scena 05 — Contatti" data-cam="ISO 800|1/50|F2.8|5600K|35MM">
-      <p class="mono idx">Scena 05 — Contatti</p>
+    <section class="contact" id="contatti" data-bg="ink" data-scene="Scena 06 — Contatti">
+      <p class="mono idx">Scena 06 — Contatti</p>
       <h2 class="contact-giant" data-split>Scrivimi<em>.</em></h2>
       <div class="contact-grid">
         <div class="contact-direct">

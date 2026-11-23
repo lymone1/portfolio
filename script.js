@@ -122,20 +122,16 @@ const sceneIO = new IntersectionObserver(entries => {
       clap.classList.remove('snap'); void clap.offsetWidth; clap.classList.add('snap');
     }
     hud.classList.toggle('cine-on', e.target.hasAttribute('data-cine'));
-    const cam = (e.target.dataset.cam || '').split('|');
-    ['iso', 'sh', 'f', 'wb', 'mm'].forEach((k, i) => {
-      const el = document.querySelector(`.hud-specs [data-k="${k}"]`);
-      if (cam[i] && el.textContent !== cam[i]) {
-        el.textContent = cam[i];
-        el.classList.add('chg'); setTimeout(() => el.classList.remove('chg'), 700);
-      }
-    });
     // colore del mirino leggibile su ogni sezione (serve anche senza animazioni)
     const fg = e.target.dataset.bg === 'bone' ? '#0E0D0B' : '#EDE6DA';
     hud.style.color = fg; document.querySelector('.af').style.color = fg;
   });
 }, { rootMargin: '-50% 0px -50% 0px' });
 $$('[data-scene]').forEach(s => sceneIO.observe(s));
+
+/* timecode che scorre sul segnaposto dello showreel */
+const reelTc = $('.reel-tc');
+if (reelTc) { let f = 0; setInterval(() => { f += 1; reelTc.textContent = tc(f); }, 1000 / FPS); }
 
 /* ---------- versione senza animazioni ---------- */
 if (!animate) {
@@ -167,134 +163,32 @@ if (!animate) {
   $$('[data-split]').forEach(split);
   gsap.set(document.body, { '--bg': COLORS.ink.bg, '--fg': COLORS.ink.fg });
 
-  /* ---------- 1. loader 000 → 100, poi il MacBook si apre ---------- */
-  // chiuso e piatto, visto di fronte
-  gsap.set('.mac', { yPercent: 6, opacity: 0 });
-  gsap.set('.mac-lid', { rotateX: -90 });
-  gsap.set('.mac-shadow', { opacity: 0, scaleX: .7 });
-  gsap.set('.mac-glare', { opacity: 0 });
-  gsap.set('.nle', { opacity: 0 });
-  gsap.set('.float-cam', { autoAlpha: 0, x: -90, rotate: -18 });
-  gsap.set('.gear', { autoAlpha: 0 });
-
-  // testina della timeline: aggiorna posizione, timecode e clip nel monitor
-  const head = { p: 0 };
-  const cuts = [[0, 1], [.18, 2], [.34, 3], [.52, 4], [.70, 5]];
-  const vwImg = $('.vw-img'), nleTc = $$('.nle-tc'), tlEl = $('.nle-timeline');
-  let shown = 1;
-  const renderHead = () => {
-    tlEl.style.setProperty('--p', head.p.toFixed(4));
-    const t = tc(Math.round(head.p * 30 * FPS) + 3600 * FPS);
-    nleTc.forEach(el => (el.textContent = t));
-    const n = cuts.filter(c => head.p >= c[0]).pop()[1];
-    if (n !== shown) { shown = n; vwImg.src = `https://picsum.photos/seed/vw${n}/480/270`; }
-  };
+  /* ---------- 1. ciak breve, la camera si accende, poi lo showreel ---------- */
   gsap.set('.hero-title .c', { yPercent: 110 });
-
-  // ciak: il timecode scorre per poco piu' di un secondo, poi stacco netto
   const clap = { f: 0 }, clapEl = $('.loader-tc');
   gsap.timeline()
-    .to(clap, { f: 32, duration: 1.3, ease: 'none', onUpdate: () => (clapEl.textContent = tc(Math.round(clap.f))) })
-    .set('.loader', { autoAlpha: 0 }, '+=.1')
-    // la camera si accende: angoli, griglia, dati, REC, uno dopo l'altro
-    .addLabel('boot')
-    .from('.vf', { autoAlpha: 0, scale: 1.6, duration: .35, stagger: .07, ease: 'power3.out' }, 'boot')
-    .from('.hud-grid', { autoAlpha: 0, duration: .5 }, 'boot+=.25')
-    .from('.hud-cross', { autoAlpha: 0, scale: .4, duration: .4, ease: 'back.out(2)', clearProps: 'transform' }, 'boot+=.35')
-    .from('.hud-level', { autoAlpha: 0, duration: .4 }, 'boot+=.35')
-    .from('.hud-specs > *', { autoAlpha: 0, duration: .01, stagger: .06 }, 'boot+=.4')
-    .from('.hud-left > *, .hud-right > *', { autoAlpha: 0, duration: .01, stagger: .12 }, 'boot+=.5')
-    .to('.mac', { opacity: 1, yPercent: 0, duration: .9, ease: 'expo.out' }, '+=.15')
-    .addLabel('open', '-=.3')
-    // il coperchio si alza da piatto, supera di poco la verticale e si assesta
-    .to('.mac-lid', { rotateX: 6, duration: 1.4, ease: 'power3.inOut' }, 'open')
-    .to('.mac-lid', { rotateX: 0, duration: .8, ease: 'elastic.out(1, .6)' })
-    .to('.mac-shadow', { opacity: 1, scaleX: 1, duration: 1.6, ease: 'power2.out' }, 'open+=.5')
-    // la a7 IV entra dal lato
-    .to('.float-cam', { autoAlpha: 1, x: 0, rotate: 0, duration: 1.4, ease: 'expo.out' }, 'open+=.9')
-    // il disegno si traccia da sinistra a destra, poi compaiono riquadro e annotazioni
-    .fromTo('.float-cam img', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.6, ease: 'power2.inOut' }, 'open+=1')
-    .from('.cam-af', { autoAlpha: 0, scale: 1.25, duration: .5, ease: 'power3.out' }, 'open+=2.3')
-    .from('.co, .cam-tag', { autoAlpha: 0, y: 8, duration: .5, stagger: .15, ease: 'power3.out' }, 'open+=2.5')
-    // luce, gimbal e microfono si disegnano uno dopo l'altro
-    .set('.gear', { autoAlpha: 1 }, 'open+=1.3')
-    .fromTo('.gear img', { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1.3, stagger: .25, ease: 'power2.inOut' }, 'open+=1.3')
-    // lo schermo si accende: riflesso che attraversa il vetro, poi tremolio
-    .to('.mac-glare', { opacity: 1, duration: .2 }, 'open+=1.1')
-    .fromTo('.mac-glare', { backgroundPosition: '100% 0' }, { backgroundPosition: '-60% 0', duration: 1.3, ease: 'power2.inOut' }, 'open+=1.1')
-    // lo schermo si accende sul programma di montaggio
-    .to('.nle', { opacity: 1, duration: .05, repeat: 5, yoyo: true, ease: 'none' }, 'open+=1.5')
-    .set('.nle', { opacity: 1 })
+    .to(clap, { f: 20, duration: .8, ease: 'none', onUpdate: () => (clapEl.textContent = tc(Math.round(clap.f))) })
+    .set('.loader', { autoAlpha: 0 }, '+=.05')
     .add(() => {
       document.body.classList.remove('loading');
       $('.loader').remove();
       lenis && lenis.start();
     })
-    // le clip cadono in timeline una dopo l'altra...
-    .from('.tl-lane .clip', { scaleX: 0, transformOrigin: '0 50%', duration: .3, stagger: .06, ease: 'power3.out' }, '+=.1')
-    // ...poi la testina scorre e nel monitor passano le clip
-    .fromTo(head, { p: 0 }, { p: .62, duration: 2.6, ease: 'none', onUpdate: renderHead }, '-=.1')
-    // la testina arriva sulla clip del titolo: nel monitor appare il nome
-    .to('.scr', { opacity: 1, duration: .25 }, '-=.5')
-    // poi il montaggio continua a girare all'infinito
-    .add(() => startLoop());
+    .addLabel('boot')
+    .from('.vf', { autoAlpha: 0, scale: 1.6, duration: .35, stagger: .06, ease: 'power3.out' }, 'boot')
+    .from('.hud-grid', { autoAlpha: 0, duration: .5 }, 'boot+=.2')
+    .from('.hud-cross', { autoAlpha: 0, scale: .4, duration: .4, ease: 'back.out(2)', clearProps: 'transform' }, 'boot+=.3')
+    .from('.hud-level', { autoAlpha: 0, duration: .4 }, 'boot+=.3')
+    .from('.hud-left > *, .hud-right > *', { autoAlpha: 0, duration: .01, stagger: .1 }, 'boot+=.4')
+    // lo showreel si apre come un otturatore
+    .fromTo('.reel-frame', { clipPath: 'inset(50% 0 50% 0)' }, { clipPath: 'inset(0% 0 0% 0)', duration: 1.1, ease: 'expo.inOut' }, 'boot+=.3');
 
-  /* ---------- timeline sempre in movimento ---------- */
-  const scrEl = $('.scr');
-  let loopTw = null, zooming = false;
-  const LOOP = 14; // secondi per un giro completo della timeline
-  const renderLoop = () => {
-    renderHead();
-    // il titolo si vede solo quando la testina e' sulla clip del titolo (V2)
-    if (!zooming) scrEl.style.opacity = head.p >= .58 && head.p < .88 ? 1 : 0;
-  };
-  function startLoop() {
-    loopTw = gsap.to(head, {
-      p: 1, duration: (1 - head.p) * LOOP, ease: 'none', onUpdate: renderLoop,
-      onComplete: () => { loopTw = gsap.fromTo(head, { p: 0 }, { p: 1, duration: LOOP, ease: 'none', repeat: -1, onUpdate: renderLoop }); }
-    });
-    if (zooming) loopTw.pause();
-  }
-
-  /* ---------- 2. zoom DENTRO lo schermo (legato allo scroll) ---------- */
-  // posizione di un elemento dentro il MacBook, senza trasformazioni
-  const offIn = (el, anc) => { let x = 0, y = 0; while (el && el !== anc) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return { x, y }; };
-  const frame = () => { const f = $('.vw-frame'), o = offIn(f, $('.mac')); return { x: o.x, y: o.y, w: f.offsetWidth, h: f.offsetHeight }; };
-  const zoomScale = () => { const f = frame(); return Math.max(innerWidth / f.w, innerHeight / f.h) * 1.06; };
-  const originX = () => { const f = frame(); return ((f.x + f.w / 2) / $('.mac').offsetWidth) * 100; };
-  const centerX = () => {
-    const pin = $('.intro-pin'), wrap = $('.mac-wrap'), f = frame();
-    return pin.offsetWidth / 2 - ((pin.offsetWidth - wrap.offsetWidth) / 2 + f.x + f.w / 2);
-  };
-  // centro dello schermo rispetto al coperchio (in %), calcolato senza trasformazioni
-  const originY = () => { const f = frame(); return ((f.y + f.h / 2) / $('.mac').offsetHeight) * 100; };
-  // sposta il centro dello schermo al centro della finestra, così lo zoom lo riempie tutto
-  const centerY = () => {
-    const pin = $('.intro-pin'), wrap = $('.mac-wrap'), f = frame();
-    return pin.offsetHeight / 2 - ((pin.offsetHeight - wrap.offsetHeight) / 2 + f.y + f.h / 2);
-  };
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '.intro', start: 'top top', end: 'bottom bottom', scrub: 1.2, invalidateOnRefresh: true,
-      // appena inizi a scorrere: la timeline si ferma sul titolo, cosi lo zoom entra nella pagina giusta
-      onUpdate: self => {
-        const z = self.progress > .01;
-        if (z === zooming) return;
-        zooming = z;
-        if (z) { loopTw && loopTw.pause(); gsap.to(scrEl, { opacity: 1, duration: .2, overwrite: true }); }
-        else { loopTw && loopTw.resume(); }
-      }
-    }
-  })
-    .to('.mac-shadow', { opacity: 0, duration: .15 }, 0)
-    // scorrendo, la camera esce verso l'angolo
-    .to('.float-cam', { xPercent: -160, yPercent: -90, rotate: -25, duration: .5, ease: 'power2.in' }, 0)
-    .to('.g-light', { xPercent: 140, duration: .5, ease: 'power2.in' }, 0)
-    .to('.g-gimbal', { xPercent: -160, yPercent: 40, duration: .5, ease: 'power2.in' }, 0)
-    .to('.g-mic', { xPercent: 120, yPercent: -140, rotate: 30, duration: .5, ease: 'power2.in' }, 0)
-    .to('.mac-glare', { opacity: 0, duration: .2 }, 0)
-    .to('.mac', { scale: zoomScale, x: centerX, y: centerY, transformOrigin: () => `${originX()}% ${originY()}%`, duration: 1, ease: 'power2.in' }, 0)
-    .to('.scr > *', { opacity: 0, duration: .3 }, .55);
+  /* casi studio: immagine che si scopre e scene che entrano una dopo l'altra */
+  $$('.case').forEach(cs => {
+    gsap.fromTo($('.case-media', cs), { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.3, ease: 'expo.inOut', scrollTrigger: { trigger: cs, start: 'top 75%' } });
+    gsap.from($$('.case-scenes li', cs), { y: 40, autoAlpha: 0, duration: .9, stagger: .12, ease: 'expo.out', scrollTrigger: { trigger: $('.case-scenes', cs), start: 'top 85%' } });
+  });
+  gsap.from('.principles li', { x: -30, autoAlpha: 0, duration: .9, stagger: .1, ease: 'expo.out', scrollTrigger: { trigger: '.principles', start: 'top 85%' } });
 
   /* ---------- 3. colore di sfondo che cambia tra le sezioni ---------- */
   const setBg = key => gsap.to(document.body, { '--bg': COLORS[key].bg, '--fg': COLORS[key].fg, duration: .7, ease: 'power2.out', overwrite: 'auto' });

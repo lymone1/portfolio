@@ -463,3 +463,84 @@ html.static .track { overflow-x: auto; width: auto; scroll-snap-type: x mandator
 html.static .work { scroll-snap-align: start; }
 @media (prefers-reduced-motion: reduce) { .nav-cta, .rec b, .btn-rec b, .tl-meters i { animation: none; } }
 
+
+
+/* =========================================================
+   VERSIONE DIRETTORE CREATIVO
+   ========================================================= */
+/* hero scuro con lo showreel */
+.hero { background: var(--ink); color: var(--bone); padding-bottom: 10vh; }
+.hero-title { font-size: clamp(48px, 8.4vw, 150px); }
+.reel-frame { position: relative; margin-top: 5vh; width: 100%; aspect-ratio: 16 / 9; max-height: 74vh; background: #000; overflow: hidden; }
+.reel-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.reel-ph { position: absolute; inset: 0; display: grid; place-items: center; }
+/* barre colore di prova, come un segnale video in attesa del montaggio */
+.bars { position: absolute; inset: 0 0 30% 0; display: flex; filter: saturate(.55) brightness(.8); }
+.bars i { flex: 1; }
+.bars i:nth-child(1) { background: #bfbfbf; } .bars i:nth-child(2) { background: #bfbf00; } .bars i:nth-child(3) { background: #00bfbf; }
+.bars i:nth-child(4) { background: #00bf00; } .bars i:nth-child(5) { background: #bf00bf; } .bars i:nth-child(6) { background: #bf0000; } .bars i:nth-child(7) { background: #0000bf; }
+.reel-ph::after { content: ""; position: absolute; inset: 70% 0 0 0; background: repeating-linear-gradient(90deg, #111 0 12%, #1d1d1d 12% 24%); }
+.reel-card { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: clamp(18px, 3vw, 36px) clamp(24px, 5vw, 64px); background: rgba(14,13,11,.88); color: var(--bone); text-align: center; }
+.reel-card strong { font-family: var(--display); font-weight: 500; font-size: clamp(32px, 5vw, 84px); line-height: .9; letter-spacing: -.04em; }
+.reel-card .mono { display: inline-flex; align-items: center; gap: 8px; }
+.rec-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); animation: rec 1.2s steps(1) infinite; }
+.reel-tc { font-variant-numeric: tabular-nums; opacity: .7; }
+.rf { position: absolute; width: 26px; height: 26px; border: 0 solid var(--bone); z-index: 2; opacity: .8; }
+.rf.tl { top: 14px; left: 14px; border-width: 1.5px 0 0 1.5px; } .rf.tr { top: 14px; right: 14px; border-width: 1.5px 1.5px 0 0; }
+.rf.bl { bottom: 14px; left: 14px; border-width: 0 0 1.5px 1.5px; } .rf.br { bottom: 14px; right: 14px; border-width: 0 1.5px 1.5px 0; }
+.hero .hero-row { padding-top: 5vh; }
+.hero-meta { grid-column: 1 / 4; }
+.hero-copy { grid-column: 5 / 10; }
+.hero-ctas { grid-column: 10 / 13; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.btn-line { display: inline-flex; padding: 14px 20px; font-size: 12px; border-bottom: 1px solid currentColor; }
+.btn-line:hover { color: var(--sig); }
+
+/* casi studio */
+.cases { padding: 18vh var(--gut) 10vh; }
+.case { border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent); padding: 5vh 0 12vh; }
+.case-head { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; margin-bottom: 3vh; }
+.case-head .tag { margin-left: auto; padding: 3px 8px; border: 1px dashed currentColor; opacity: .7; }
+.case-title { font-family: var(--display); font-weight: 500; font-size: clamp(30px, 4.2vw, 72px); line-height: .98; letter-spacing: -.04em; max-width: 18ch; margin-bottom: 4vh; }
+.case-media { aspect-ratio: 21 / 9; overflow: hidden; margin-bottom: 5vh; }
+.case-media img { transition: transform 1.2s var(--ease); }
+.case:hover .case-media img { transform: scale(1.03); }
+.case-scenes { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gut); }
+.case-scenes li { border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent); padding-top: 14px; }
+.case-scenes li .mono { display: block; margin-bottom: 12px; opacity: .7; }
+.case-scenes p { font-size: 17px; line-height: 1.35; }
+.case-scenes .res b { display: block; font-family: var(--display); font-weight: 500; font-size: clamp(48px, 5.4vw, 96px); line-height: .9; letter-spacing: -.05em; color: var(--sig); margin-bottom: 8px; }
+
+/* chi sono: metodo, clienti, attrezzatura */
+.principles { list-style: none; margin-top: 7vh; border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+.principles li { display: grid; grid-template-columns: 50px 1fr; gap: 6px 16px; padding: 2.4vh 0; border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); }
+.principles b { font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2.2vw, 34px); letter-spacing: -.03em; line-height: 1.05; }
+.principles p { grid-column: 2; font-size: 17px; opacity: .8; }
+.clients { margin-top: 14vh; }
+.clients ul { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent); margin-top: 14px; }
+.clients li { padding: 28px 10px; text-align: center; border-right: 1px solid color-mix(in srgb, currentColor 18%, transparent); font-size: 13px; opacity: .65; }
+.clients li:last-child { border-right: 0; }
+.kit { margin-top: 12vh; }
+.kit ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gut); margin-top: 14px; }
+.kit li { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 22px; background: var(--ink); }
+.kit img { height: 110px; width: auto; object-fit: contain; }
+.kit .mono { color: var(--bone); opacity: .8; }
+
+@media (max-width: 900px) {
+  .hero-meta, .hero-copy, .hero-ctas { grid-column: 1 / -1; }
+  .hero-ctas { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+  .case-scenes { grid-template-columns: 1fr 1fr; }
+  .case-head .tag { margin-left: 0; }
+  .case-media { aspect-ratio: 4 / 3; }
+  .clients ul { grid-template-columns: repeat(3, 1fr); }
+  .clients li:nth-child(3) { border-right: 0; }
+  .kit ul { grid-template-columns: 1fr 1fr; }
+  .kit img { height: 80px; }
+}
+@media (max-width: 520px) { .case-scenes { grid-template-columns: 1fr; } }
+html.static [data-bg="ink"].hero { background: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .rec-dot { animation: none; } }
+
+/* prova sociale subito dopo la hero: clienti in una fascia sola */
+.proof { background: var(--ink); color: var(--bone); padding: 4vh var(--gut) 6vh; border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent); }
+.proof .clients { margin-top: 0; }
+.proof .clients .idx { margin-bottom: 4px; }
