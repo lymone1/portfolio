@@ -1,4 +1,5 @@
 :root {
+  --section: clamp(72px, 10vw, 128px);
   --ink: #0E0D0B;
   --bone: #EDE6DA;
   --sig: #2B3BFF;
@@ -26,8 +27,8 @@ a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 ::selection { background: var(--sig); color: var(--bone); }
-em { font-style: normal; color: var(--sig); }
-.mono { font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .02em; text-transform: uppercase; font-weight: 400; }
+em { font-style: normal; color: inherit; }
+.mono { font-family: var(--mono); font-size: 12px; line-height: 1.5; letter-spacing: 0; text-transform: none; font-weight: 400; }
 .idx { opacity: .7; }
 main { overflow-x: clip; }
 main > section { position: relative; overflow: clip; }
@@ -322,7 +323,7 @@ main > section { position: relative; overflow: clip; }
 .btn-rec:hover { background: var(--fg); color: var(--bg); }
 
 /* ---------- servizi ---------- */
-.services { padding: 18vh var(--gut) 16vh; }
+.services { padding: var(--section) var(--gut); }
 .sec-head { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gut); margin-bottom: 10vh; }
 .sec-head .idx { grid-column: 1 / 4; padding-top: 1em; }
 .sec-title { grid-column: 4 / 13; font-family: var(--display); font-weight: 500; font-size: clamp(42px, 7vw, 120px); line-height: .92; letter-spacing: -.05em; }
@@ -380,7 +381,7 @@ main > section { position: relative; overflow: clip; }
 .track-end { flex: none; width: clamp(240px, 26vw, 420px); padding-left: 4vw; font-family: var(--display); font-size: clamp(32px, 3.6vw, 60px); line-height: .95; letter-spacing: -.04em; }
 
 /* ---------- chi sono ---------- */
-.about { padding: 18vh var(--gut) 14vh; }
+.about { padding: var(--section) var(--gut); }
 .about-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gut); margin-top: 6vh; align-items: start; }
 .about-img { grid-column: 1 / 5; margin-top: 18vh; }
 .about-img-in { aspect-ratio: 4/5; overflow: hidden; }
@@ -396,7 +397,7 @@ main > section { position: relative; overflow: clip; }
 .nums dd { margin-top: 8px; }
 
 /* ---------- contatti ---------- */
-.contact { padding: 16vh var(--gut) 0; }
+.contact { padding: var(--section) var(--gut) 0; }
 .contact-giant { font-family: var(--display); font-weight: 600; font-size: clamp(96px, 22vw, 400px); line-height: .8; letter-spacing: -.065em; margin: 4vh 0 8vh -.05em; white-space: nowrap; }
 .contact-giant em { color: var(--sig); }
 .contact-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gut); padding-bottom: 14vh; }
@@ -496,7 +497,7 @@ html.static .work { scroll-snap-align: start; }
 .btn-line:hover { color: var(--sig); }
 
 /* casi studio */
-.cases { padding: 18vh var(--gut) 10vh; }
+.cases { padding: var(--section) var(--gut); }
 .case { border-top: 1px solid color-mix(in srgb, currentColor 30%, transparent); padding: 5vh 0 12vh; }
 .case-head { display: flex; flex-wrap: wrap; gap: 10px 28px; align-items: center; margin-bottom: 3vh; }
 .case-head .tag { margin-left: auto; padding: 3px 8px; border: 1px dashed currentColor; opacity: .7; }
@@ -544,3 +545,17 @@ html.static [data-bg="ink"].hero { background: var(--ink); }
 .proof { background: var(--ink); color: var(--bone); padding: 4vh var(--gut) 6vh; border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent); }
 .proof .clients { margin-top: 0; }
 .proof .clients .idx { margin-bottom: 4px; }
+
+
+/* ===== unslop: passata finale ===== */
+/* nessuna animazione infinita: restano l'ingresso e l'hover */
+.nav-cta, .rec b, .btn-rec b, .rec-dot, .cam-tag b, .tl-meters i, .cam-af,
+.work:hover .w-media::after, .cam-in, .g-in, .g-light::before, .g-mic::before,
+.g-mic::after, .g-mic img, .clap.snap .clap-top { animation: none !important; }
+.work .w-media::after { opacity: .35; }
+
+/* controlli: frase normale, un solo accento */
+.nav-cta, .btn-rec, .btn-line { text-transform: none; letter-spacing: 0; font-size: 13px; }
+
+/* mirino quieto: solo angoli, REC fermo e timecode */
+.hud-grid, .hud-cross, .hud-level, .hud-specs { display: none !important; }
